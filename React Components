@@ -1,0 +1,36 @@
+// TaskInput.jsx
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addTask } from './actions'; // Import action creator
+
+const TaskInput = () => {
+  const [newTask, setNewTask] = useState('');
+  const dispatch = useDispatch();
+
+  const handleInputChange = (event) => {
+    setNewTask(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (newTask.trim()) {
+      dispatch(addTask(newTask)); // Dispatch action to add task
+      setNewTask('');
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        placeholder="Add a new task"
+        value={newTask}
+        onChange={handleInputChange}
+      />
+      <button type="submit">Add</button>
+    </form>
+  );
+};
+
+export default TaskInput;
+```
