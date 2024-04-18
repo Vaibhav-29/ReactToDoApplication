@@ -1,0 +1,21 @@
+// TaskItem.jsx
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { deleteTask } from './actions'; // Import action creator
+
+const TaskItem = ({ task }) => {
+  const dispatch = useDispatch();
+
+  const handleDelete = () => {
+    dispatch(deleteTask(task.id)); // Dispatch action to delete task
+  };
+
+  return (
+    <li key={task.id}>
+      {task.content}
+      <button onClick={handleDelete}>Delete</button>
+    </li>
+  );
+};
+
+export default TaskItem;
